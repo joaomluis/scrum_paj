@@ -3,11 +3,11 @@
     border-radius: 15px; 
     box-shadow: 0 0 20px #8e8d8a; 
     padding: 10px 20px; 
-    transition: transform 0.2s; 
     width: 500px; 
     text-align: center; 
     
-}   
+}  
+
 
 body { 
     display: flex; 
@@ -16,10 +16,9 @@ body {
     font-family: sans-serif; 
     line-height: 1.5; 
     min-height: 100vh; 
-    background: #f3f3f3; 
-    flex-direction: column; 
+    background: #f3f3f3;   
     margin: 0; 
-    background-image: url('/scrum_paj/style/green_dust_scratch.png');
+    background-image: url('bck_3.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed; 
@@ -42,6 +41,10 @@ input {
     box-sizing: border-box;
     border: 1px solid #ddd; 
     border-radius: 5px; 
+}
+
+#recover-password {
+    font-size: 13px;
 }
 
 button {
