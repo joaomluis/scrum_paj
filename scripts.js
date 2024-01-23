@@ -20,9 +20,9 @@ document.addEventListener("scroll", function() {
 
     // Adjust the value (e.g., 50) to determine when to show the footer
     if (scrollPosition + windowHeight >= documentHeight - 50) {
-        document.getElementById("page-footer").style.display = "block";
+        document.getElementById("main-page-footer").style.display = "block";
     } else {
-        document.getElementById("page-footer").style.display = "none";
+        document.getElementById("main-page-footer").style.display = "none";
     }
 });
 
