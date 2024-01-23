@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <script src="scripts.js" defer></script>
     <title>Scrum | Log in</title>
 </head>
 <body>
@@ -11,12 +12,12 @@
         <h1>Welcome to AoR Scrum Page</h1>
         <h3>Insert your login info</h3>
         <form action="">
-            <label for="first">
+            <label for="username">
                 Username:
             </label>  
             <input type="text"
-            id="first"
-            name="first"
+            id="username"
+            name="username"
             placeholder="Insert your username here" required>
 
             <label for="password">
@@ -27,13 +28,21 @@
             name="password"
             placeholder="Insert your password here" required>
 
+            
+
         <div class="wrap">
-            <button type="button"
-            onclick="solve()">
+            <button id="login-button" type="button"
+            onclick="login()">
             Login
         </button>
         </div>
         </form>
-    
+        <p id="recover-password">
+            <a href="">Recover your passoword</a>
+            <span> | </span>
+            <a href="">Create new account</a>
+        </p>
+        <p></p>
+    </div>
 </body>
 </html>
