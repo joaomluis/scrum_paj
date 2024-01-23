@@ -1,0 +1,68 @@
+.main { 
+    background-color: #eae7cd; 
+    border-radius: 15px; 
+    box-shadow: 0 0 20px #8e8d8a; 
+    padding: 10px 20px; 
+    transition: transform 0.2s; 
+    width: 500px; 
+    text-align: center; 
+    
+}   
+
+body { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: sans-serif; 
+    line-height: 1.5; 
+    min-height: 100vh; 
+    background: #f3f3f3; 
+    flex-direction: column; 
+    margin: 0; 
+    background-image: url('/scrum_paj/style/green_dust_scratch.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+label {
+    display: block;
+    width: 100%;
+    font-weight: bolder;
+    color: black;
+    text-align: left;
+    margin-top: 15px;
+}
+
+input {
+    display: block; 
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+
+button {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #e85a4f;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+h1 {
+    color: #e85a4f;
+}
+
+.wrap { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
