@@ -18,7 +18,7 @@
     min-height: 100vh; 
     background: #f3f3f3;   
     margin: 0; 
-    background-image: url('bck_3.png');
+    background-image: url('bck_2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed; 
@@ -79,7 +79,7 @@ button {
 
 .header-login {
     display: flex;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     width: 25%;
     position: absolute;
     top: 0;
@@ -188,4 +188,14 @@ h1 {
     height: auto;
     margin-right: 25px;
     cursor: pointer;
+}
+
+.task {
+    margin: 0 0 6px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: grab;
+    width: ;
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .board {
+      display: flex;
+    }
+
+    .list {
+      margin: 0 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-width: 200px;
+      background-color: #f7f7f7;
+    }
+
+    .card {
+      margin: 0 0 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: grab;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        card.addEventListener('dragstart', dragStart);
+        card.addEventListener('dragend', dragEnd);
+      });
+
+      function dragStart() {
+        this.classList.add('dragging');
+      }
+
+      function dragEnd() {
+        this.classList.remove('dragging');
+      }
+
+      const lists = document.querySelectorAll('.list');
+
+      lists.forEach(list => {
+        list.addEventListener('dragover', dragOver);
+        list.addEventListener('dragenter', dragEnter);
+        list.addEventListener('dragleave', dragLeave);
+        list.addEventListener('drop', drop);
+      });
+
+      function dragOver(e) {
+        e.preventDefault();
+      }
+
+      function dragEnter(e) {
+        e.preventDefault();
+        this.classList.add('over');
+      }
+
+      function dragLeave() {
+        this.classList.remove('over');
+      }
+
+      function drop() {
+        const card = document.querySelector('.dragging');
+        this.appendChild(card);
+        this.classList.remove('over');
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="board">
+    <div class="list" id="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div class="card" draggable="true">Task 1</div>
+      <div class="card" draggable="true">Task 2</div>
+    </div>
+    <div class="list" id="in-progress-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div class="card" draggable="true">Task 3</div>
+    </div>
+    <div class="list" id="done-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div class="card" draggable="true">Task 4</div>
+      <div class="card" draggable="true">Task 5</div>
+    </div>
+  </div>
+</body>
+</html>
