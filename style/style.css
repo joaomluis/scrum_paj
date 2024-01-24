@@ -10,7 +10,6 @@
 
 
 #login-page { 
-#bodylogin { 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -94,7 +93,7 @@ button {
 }
 
 
-.header {
+.header-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,12 +125,12 @@ button {
     align-items: center;
     
 }
-#boxUser {
+#welcome-user {
     display: flex;
     font-size: 20px;
-    align-items: center;
     justify-content: end;
-    
+    margin-right: 20px;
+    margin-top: 0px;
 }
 
 
@@ -152,6 +151,8 @@ button {
 
 #box1 {
     height: 400px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu_lateral{
@@ -159,5 +160,32 @@ button {
     margin: 10px;
     border-radius: 10px;
     background-color: #e85a4f;
-    width: 150px;
+    width: 125px;
+}
+
+#createButton{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #e85a4f;
+    color: white;
+    font-size: 14px;
+    border-radius: 25px;
+    width: 100px;
+    border-style: solid;
+    border-color: #333;
+
+}
+#createButton:hover {
+    background-color: #333;
+}
+
+h1 {
+    margin-right: 50px;
+}
+
+#user-logo{
+    max-width: 40px;
+    height: auto;
+    margin-right: 25px;
+    cursor: pointer;
 }

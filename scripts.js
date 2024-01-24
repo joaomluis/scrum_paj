@@ -6,11 +6,10 @@ function login() {
     if (username === '' || password === '') {
         alert('Please enter both username and password')
     } else {
-        document.getElementById('login-button').addEventListener('click', function() {
-            window.location.href = 'main-page.html';
-        });
+            window.location.href = 'main-page.html';  
+        };
     }
-}
+
 
 // Add this to your scripts.js file or within a <script> tag in the head section
 document.addEventListener("scroll", function() {
