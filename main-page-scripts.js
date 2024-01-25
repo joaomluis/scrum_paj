@@ -1,6 +1,6 @@
 // scritps para arrastar
 
-document.addEventListener('DOMContentLoaded', function() {
+function setupDragAndDrop() {
     const boxes = document.querySelectorAll('.box');
     const tasks = document.querySelectorAll('.task')
 
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function dragStart() {
+        console.log("dragStart")
         this.classList.add('dragging');
     }
 
@@ -37,11 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function drop() {
+        console.log("Dropping")
         const draggingTask = document.querySelector('.dragging');
+        console.log(draggingTask)
         this.appendChild(draggingTask);
         draggingTask.classList.remove('over');
     }
 
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Running")
+    setupDragAndDrop()    
 });
 
 
@@ -74,15 +82,23 @@ function createTask() {
     var taskDescription = document.getElementById("text-area").value;
 
     if (taskName) {
-        var newTask = document.createElement("div");
+        var newTask = document.createElement("li");
         newTask.className = "task";
         newTask.draggable = true;
-        newTask.innerHTML = `<p>${taskName}</p><p>${taskDescription}</p>`;
+        newTask.innerHTML = `
+        <div>
+        
+        ${taskName}<p class="task-description"> ${taskDescription}</p>`;
+        //newTask.innerHTML = `<p>${taskName}</p><p>${taskDescription}</p>`;
 
         var toDoList = document.getElementById("to-do-list");
         toDoList.appendChild(newTask);
 
+        document.getElementById("taskName").value = "";
+        document.getElementById("text-area").value = "";
+
         closeModal();
+        setupDragAndDrop();
     }
 }
 

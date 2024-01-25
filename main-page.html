@@ -14,34 +14,24 @@
 <body id="mainbody">
     <header class="header-main">
         <img src="style/post-it-logo.png" alt="Scrum AoR Logo" id="main-logo">
-        <h1>Scrum AoR</h1>
-        
+        <h1 id="header-main">Scrum AoR</h1>
         <label class="label" id="welcome-user">Welcome</label>
         <img src="style/icon1.png" alt="user-Logo" id="user-logo">
     </header>
     <main>
-    
+   
         <div class="maincenter">
             <aside class="menu_lateral"> 
                 <div id="tittle-aside">Menu</div>
                 <button id="aside-button" type="button" onclick="openModal()">Create</button>
                 <button id="aside-button" type="button" onclick="logout()">Logout</button>
-                
+               
             </aside>
-            <div class="box" id="to-do-list" ondrop="drop(event)" ondragover="allowDrop(event)">TO DO <hr>
-                <div class="task" draggable="true">Task 1
-                    <p id="task-description">testsssssssssssssssssssssssssssssss</p>
-                </div>
-                <div class="task" draggable="true">Task 1</div>
-                <div class="task" draggable="true">Task 2</div>
-                <div class="task" draggable="true">Task 4</div>
-                <div class="task" draggable="true">Task 5</div>
-                <div class="task" draggable="true">Task 6</div>
-                <div class="task" draggable="true">Task 7</div>
-                <div class="task" draggable="true">Task 8</div>
-                <div class="task" draggable="true">Task 9</div>
-                <div class="task" draggable="true">Task 10</div>
-            </div>
+            <ul class="box" id="to-do-list" ondrop="drop(event)" ondragover="allowDrop(event)">TO DO <hr>
+                
+            <li class="task" draggable="true">task1
+                <p class="task-description"> frrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p> </li>
+            </ul>
             <div class="box" id="doing-list" ondrop="drop(event)" ondragover="allowDrop(event)">DOING<hr></div>
             <div class="box" id="done-list" ondrop="drop(event)" ondragover="allowDrop(event)">DONE<hr></div>
         </div>
@@ -49,7 +39,7 @@
         <div id="taskModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
-                <h2>Create Task</h2>
+                <h2 id="modal-tittle">Create Task</h2>
                 <label for="taskName">Task Name:</label>
                 <input type="text" id="taskName" required>
                 <label for="taskDescription">Task Description:</label>
@@ -57,7 +47,7 @@
                 <button onclick="createTask()">Create Task</button>
             </div>
         </div>
-        
+       
     </main>
 
     <footer id="main-page-footer" class="hidden">
