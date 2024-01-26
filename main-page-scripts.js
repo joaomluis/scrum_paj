@@ -83,16 +83,25 @@ function createTask() {
 
     if (taskName) {
         var newTask = document.createElement("li");
+        var iconId = "icon-" + taskName;
         newTask.className = "task";
         newTask.draggable = true;
         newTask.innerHTML = `
         <div>
+            <i id="${iconId}" class="fa-regular fa-trash-can"></i>
+            ${taskName}<p class="task-description"> ${taskDescription}</p>
+        </div>`;
         
-        ${taskName}<p class="task-description"> ${taskDescription}</p>`;
-        //newTask.innerHTML = `<p>${taskName}</p><p>${taskDescription}</p>`;
 
         var toDoList = document.getElementById("to-do-list");
         toDoList.appendChild(newTask);
+
+        // função para eliminar tarefas ao carregar no icone
+
+        document.getElementById(iconId).addEventListener("click", function(event) {
+            event.preventDefault();
+            this.parentElement.parentElement.remove();
+        });
 
         document.getElementById("taskName").value = "";
         document.getElementById("text-area").value = "";
@@ -101,6 +110,10 @@ function createTask() {
         setupDragAndDrop();
     }
 }
+
+
+
+
 
 //funçoes para adicionar tasks as boxes que o prof fez 
 
