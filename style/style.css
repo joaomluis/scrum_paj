@@ -137,8 +137,9 @@ button {
     font-size: 20px;
     align-items: center;
     color: wheat;
-    
+
 }
+
 #welcome-user {
     display: flex;
     font-size: 20px;
@@ -157,7 +158,7 @@ button {
     margin: 0 auto;
 }
 
-.maincenter{
+.maincenter {
     display: flex;
     height: 78vh;
 }
@@ -178,7 +179,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top:0px;
+    padding-top: 0px;
 }
 
 #aside-button{
@@ -193,6 +194,7 @@ button {
     border-color: black;
 
 }
+
 #aside-button:hover {
     background-color: #333;
 }
@@ -201,7 +203,7 @@ h1 {
     margin-right: 50px;
 }
 
-#user-logo{
+#user-logo {
     max-width: 40px;
     height: auto;
     margin-right: 25px;
@@ -262,22 +264,10 @@ h1 {
     color: black;
     font-size: 20px;
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 20px;
-    background-color: white;
-    border-style: solid;
-    width:150%;
-
-}
-
-.modal {
-    display: none;
+    padding: 2px;
     position: fixed;
-    top: 0;
-    left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
