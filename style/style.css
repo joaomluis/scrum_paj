@@ -1,66 +1,13 @@
-/* geral*/
+.main { 
+    background-color: #eae7cd; 
+    border-radius: 15px; 
+    box-shadow: 0 0 20px #8e8d8a; 
+    padding: 10px 20px; 
+    width: 500px; 
+    text-align: center; 
+    
+}  
 
-label {
-    display: block;
-    width: 100%;
-    font-weight: bolder;
-    color: black;
-    text-align: left;
-    margin-top: 15px;
-}
-
-input {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    border: none;
-    cursor: pointer;
-    background-color: #e85a4f;
-    width: 100%;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-#main-page-footer {
-.wrap { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-#login-page-footer {
-    background-color: #8e8d8a;
-    color: white;
-    text-align: center;
-    padding: 2px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-
-}
-
-#main-logo {
-    max-width: 100px;
-    height: auto;
-}
-
-/* index.html*/
-
-.main {
-    background-color: #eae7cd;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #8e8d8a;
-    padding: 10px 20px;
-    width: 500px;
-    text-align: center;
-}
 
 #login-page { 
     display: flex; 
@@ -77,14 +24,57 @@ button {
     background-attachment: fixed; 
 }
 
+label {
+    display: block;
+    width: 100%;
+    font-weight: bolder;
+    color: black;
+    text-align: left;
+    margin-top: 15px;
+}
+
+input {
+    display: block; 
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+
 #recover-password {
     font-size: 13px;
+}
+
+button {
+    margin-bottom: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #e85a4f;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .wrap { 
     display: flex; 
     justify-content: center; 
     align-items: center; 
+}
+
+#login-page-footer {
+    background-color: #8e8d8a;
+    color: white;
+    text-align: center;
+    padding: 2px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
 }
 
 #main-page-footer {
@@ -108,14 +98,11 @@ button {
     padding: 10px;
 }
 
-#login-button{
-    margin-bottom: 10px;
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 10px;
+#main-logo {
+    max-width: 100px;
+    height: auto;
 }
 
-/* main-page.html*/
 
 .header-main {
     display: flex;
@@ -123,6 +110,12 @@ button {
     align-items: center;
     background-color: #eae7cd;
     font-family: sans-serif;
+}
+
+#mainbody {
+    background-color: #d1cdcd;
+    color: #e85a4f;
+    margin: 0px;
 }
 
 .box{
@@ -139,7 +132,6 @@ button {
     overflow-y: scroll;
     
 }
-
 #boxTitulo{
     display: flex;
     font-size: 20px;
@@ -177,16 +169,11 @@ button {
 }
 
 .menu_lateral{
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
     padding: 40px;
     position: relative;
     bottom: 0;
     height: auto;
     background-color: #e85a4f;
-    width: 125px;
-    text-align: center;
     width: 150px;
     display: flex;
     flex-direction: column;
@@ -194,18 +181,13 @@ button {
     padding-top:0px;
 }
 
-#createButton{
 #aside-button{
     padding: 10px;
     cursor: pointer;
-    background-color: #e85a4f;
-    color: white;
-    font-size: 16px;
     background-color: white;
     color: black;
     font-size: 14px;
     border-radius: 25px;
-    width: 100px;
     width: 155px;
     border-style: solid;
     border-color: black;
@@ -215,7 +197,7 @@ button {
     background-color: #333;
 }
 
-#header-main {
+h1 {
     margin-right: 50px;
 }
 
@@ -259,73 +241,7 @@ button {
 
 
 
-#mainbody {
-    background-color: #d1cdcd;
-    color: #e85a4f;
-    margin: 0px;
-}
-
-/* editor.html*/
-
-#edit-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    line-height: 1.5;
-    min-height: 100vh;
-    background: #f3f3f3;
-    margin: 0;
-    background-image: url('bck_2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-.main-edit {
-    background-color: #e85a4f;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #8e8d8a;
-    padding: 10px 20px;
-    width: 700px;
-    height: 500px;
-    text-align: center;
-    overflow:hidden;
-
-}
-
-#description{
-    float: left;
-    width: 99%;
-    height: 150px;
-    margin-bottom: 15px;
-}
-
-#label-title-edit{
-    width: 50%;
-}
-
-#titlename{
-    width: 50%
-}
-
-#stage{
-    float: left;
-    text-align: center;
-    width:20%
-}
-
-#submit-edit{
-    float: left;
-    width: 12%;
-    border: #333;
-    border-style: solid;
-    border-width: 1px;
-    text-align: center;
-    padding: 5px;
-}
-
-#task-description {
+.task-description {
     color: black;
     text-align: left;
     font-weight: lighter;
