@@ -7,10 +7,9 @@ function login() {
     if (username === '' || password === '') {
         alert('Please enter both username and password')
     } else {
-            localStorage.setItem('username', username);
-            window.location.href = 'main-page.html';  
+            sessionStorage.setItem('username', username);
+            window.location.href = 'main-page.html'; 
         };
     }
-
 
 

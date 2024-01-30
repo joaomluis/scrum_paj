@@ -28,18 +28,14 @@
                     <li><button type="button" class="aside-button" onclick="logout()">Logout</button></li>
                 </ul>
             </aside>
-            <ul class="box" id="to-do-list" ondrop="drop(event)" ondragover="allowDrop(event)">TO DO <hr>
-                
-            <li class="task" draggable="true"> <i class="fa-regular fa-trash-can"></i></i>task1
-                <p class="task-description"> frrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p> </li>
-            </ul>
-            <div class="box" id="doing-list" ondrop="drop(event)" ondragover="allowDrop(event)">DOING<hr></div>
-            <div class="box" id="done-list" ondrop="drop(event)" ondragover="allowDrop(event)">DONE<hr></div>
+            <ul class="box" id="to-do-list">TO DO <hr></ul>
+            <ul class="box" id="doing-list">DOING<hr></ul>
+            <ul class="box" id="done-list">DONE<hr></ul>
         </div>
 
         <div id="taskModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
                 <h2 id="modal-tittle">Create Task</h2>
                 <label for="taskName">Task Name:</label>
                 <input type="text" id="taskName" required>
