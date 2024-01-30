@@ -44,6 +44,16 @@
                 <button onclick="createTask()">Create Task</button>
             </div>
         </div>     
+
+        <div id="seeTaskModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeSeeTaskModal()">&times;</span>
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" readonly>
+                <label for="taskDescription">Task Description:</label>
+                <textarea id="text-area" readonly></textarea>
+            </div>
+        </div>
     </main>
 
     <footer id="main-page-footer" class="hidden">

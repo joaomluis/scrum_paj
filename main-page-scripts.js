@@ -3,9 +3,6 @@ window.onload = function() {
 };
 
 // scritps para arrastar
-function allowDrop(event) {
-    event.preventDefault();
-}
 
 function setupDragAndDrop() {
     const boxes = document.querySelectorAll('.box');
@@ -44,17 +41,11 @@ function setupDragAndDrop() {
         this.classList.remove('over');
     }
 
-    function drop(event) {
-        console.log("Dropping");
+    function drop() {
+        console.log("Dropping")
         const draggingTask = document.querySelector('.dragging');
-        console.log(draggingTask);
-
-        // Check if the event target is a box before appending the task
-        if (event.target.classList.contains('box')) {
-        event.preventDefault();
-
-        // Append the draggingTask to the target element
-        event.target.appendChild(draggingTask);
+        console.log(draggingTask)
+        this.appendChild(draggingTask);
         draggingTask.classList.remove('over');
 
         if (this.id === 'to-do-list') {
@@ -68,19 +59,16 @@ function setupDragAndDrop() {
             console.log('changed');
         }
         updateTaskInLocalStorage(draggingTask);
-        }
     }
+
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("Running");
-    setupDragAndDrop();    
-});
 
 
 //função para fazer get do username da storage e atribuir esse username à label da pagina incial
 document.addEventListener('DOMContentLoaded', function() {
-    const username = localStorage.getItem('username');
+    const username = sessionStorage.getItem('username');
+
     const welcomeLabel = document.getElementById('welcome-user');
     if (welcomeLabel) {
         welcomeLabel.textContent = 'Welcome, ' + username;
@@ -122,7 +110,6 @@ function createTask() {
                 <div>
                     <i id="${iconId}" class="fa-regular fa-trash-can"></i>
                     <i class="fa-regular fa-pen-to-square"> </i>
-                    <i class="fa-regular fa-eye"></i>
                     ${taskName}<p class="task-description"> ${taskDescription}</p>
                 </div>`
         };
@@ -133,6 +120,10 @@ function createTask() {
         let newTaskAsElement = convertTaskObjectToElement(newTask);
         toDoList.appendChild(newTaskAsElement);
 
+        newTaskAsElement.addEventListener("dblclick", function() {
+            showTaskDetails(taskName, taskDescription);
+        });
+
         // função para eliminar tarefas ao carregar no icone
 
         deleteTask(iconId, newTask);
@@ -140,8 +131,9 @@ function createTask() {
         document.getElementById("taskName").value = "";
         document.getElementById("text-area").value = "";
 
-        closeModal();
         setupDragAndDrop();
+        closeModal();
+    
     }
 }
 
@@ -225,6 +217,11 @@ function loadTasksToCorretctList() {
             } else {
                 doneList.appendChild(taskAsElement);
             }
+
+            taskAsElement.addEventListener("dblclick", function() {
+                showTaskDetails(task.title, task.description);
+            });
+
             setupDragAndDrop();
             deleteTask(task.iconId, task);
         });
@@ -257,3 +254,22 @@ function deleteTaskFromStorage(task) {
     saveTasksToLocalStorage(tasksFromStorage);
 }
 
+
+function showTaskDetails(taskTitle, taskDescription) {
+    var modal = document.getElementById("seeTaskModal");
+    var modalContent = modal.getElementsByClassName("modal-content")[0];
+
+    // Get the input fields for the task title and description
+    var taskNameInput = modalContent.querySelector("#taskName");
+    var taskDescriptionTextArea = modalContent.querySelector("#text-area");
+
+    // Populate the input fields with the task details
+    taskNameInput.value = taskTitle;
+    taskDescriptionTextArea.value = taskDescription;
+    modal.style.display = "block";
+}
+
+function closeSeeTaskModal() {
+    var modal = document.getElementById("seeTaskModal");
+    modal.style.display = "none";
+}
