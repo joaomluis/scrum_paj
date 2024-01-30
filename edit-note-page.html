@@ -10,10 +10,13 @@
 </head>
 
 <body id="edit-page">
-    <div class="header-login">
+    <header class="header-main">
         <img src="style/post-it-logo.png" alt="Scrum AoR Logo" id="main-logo">
-        <h1>Scrum AoR</h1>
-    </div>
+        <h1 id="header-main">Scrum AoR</h1>
+        <label class="label" id="welcome-user">Welcome</label>
+        <img src="style/icon1.png" alt="user-Logo" id="user-logo">
+    </header>
+    <main>
     <div class="main-edit">
         <h1>Editor</h1>
         <form action="POST">
@@ -33,11 +36,11 @@
             <label>
                 Description:
             </label>
-            <textarea id="description" name="description">Describe the project tasks</textarea>
-            <button type="button" id="butao">bb</button>
-            <input type="submit" id="submit-edit" value="Submit">
+            <textarea id="description" name="description" onfocus='myFunction()'>Describe the project tasks</textarea>
+            <button type="button" id="save-edit">Save</button>
         </form>
     </div>
+    </main>
 
     <footer id="edit-note-footer" class="hidden">
         &copy; Projeto 1 - Programação Avançada em Java - AoR | by João Luís & João Morais | Universidade de Coimbra

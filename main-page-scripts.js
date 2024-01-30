@@ -1,4 +1,7 @@
 // scritps para arrastar
+function allowDrop(event) {
+    event.preventDefault();
+}
 
 function setupDragAndDrop() {
     const boxes = document.querySelectorAll('.box');
@@ -37,26 +40,31 @@ function setupDragAndDrop() {
         this.classList.remove('over');
     }
 
-    function drop() {
-        console.log("Dropping")
+    function drop(event) {
+        console.log("Dropping");
         const draggingTask = document.querySelector('.dragging');
-        console.log(draggingTask)
-        this.appendChild(draggingTask);
-        draggingTask.classList.remove('over');
-    }
+        console.log(draggingTask);
 
+        // Check if the event target is a box before appending the task
+        if (event.target.classList.contains('box')) {
+        event.preventDefault();
+
+        // Append the draggingTask to the target element
+        event.target.appendChild(draggingTask);
+        draggingTask.classList.remove('over');
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Running")
-    setupDragAndDrop()    
+    console.log("Running");
+    setupDragAndDrop();    
 });
 
 
 //função para fazer get do username da storage e atribuir esse username à label da pagina incial
 document.addEventListener('DOMContentLoaded', function() {
-    const username = sessionStorage.getItem('username');
-
+    const username = localStorage.getItem('username');
     const welcomeLabel = document.getElementById('welcome-user');
     if (welcomeLabel) {
         welcomeLabel.textContent = 'Welcome, ' + username;
@@ -64,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function logout() {
+    // remoção de username em logout da storage
+    localStorage.removeItem('username');
     window.location.href='index.html';
 }
 
@@ -93,7 +103,6 @@ function createTask() {
         </div>`;
         
 
-        var toDoList = document.getElementById("to-do-list");
         toDoList.appendChild(newTask);
 
         // função para eliminar tarefas ao carregar no icone
@@ -121,17 +130,15 @@ function fromHTML(html, trim = true) {
     // Process the HTML string.
     html = trim ? html : html.trim();
     if (!html) return null;
-  
     // Then set up a new template element.
     const template = document.createElement('template');
     template.innerHTML = html;
     const result = template.content.children;
-  
     // Then return either an HTMLElement or HTMLCollection,
     // based on whether the input HTML had one or more roots.
     if (result.length === 1) return result[0];
     return result;
-  }
+}
 
 function addDummyData() {
     const tasks = [

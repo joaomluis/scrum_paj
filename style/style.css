@@ -1,27 +1,26 @@
-.main { 
-    background-color: #eae7cd; 
-    border-radius: 15px; 
-    box-shadow: 0 0 20px #8e8d8a; 
-    padding: 10px 20px; 
-    width: 500px; 
-    text-align: center; 
-    
-}  
+.main {
+    background-color: #eae7cd;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #8e8d8a;
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+}
 
 
-#login-page { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: sans-serif; 
-    line-height: 1.5; 
-    min-height: 100vh; 
-    background: #f3f3f3;   
-    margin: 0; 
+#login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    margin: 0;
     background-image: url('bck_2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    background-attachment: fixed;
 }
 
 label {
@@ -34,13 +33,13 @@ label {
 }
 
 input {
-    display: block; 
+    display: block;
     width: 100%;
     margin-bottom: 15px;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ddd; 
-    border-radius: 5px; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 #recover-password {
@@ -60,10 +59,10 @@ button {
     font-weight: bold;
 }
 
-.wrap { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #login-page-footer {
@@ -74,7 +73,7 @@ button {
     position: fixed;
     bottom: 0;
     width: 100%;
-    
+
 }
 
 #main-page-footer {
@@ -83,9 +82,9 @@ button {
     text-align: center;
     padding: 2px;
     bottom: 0;
-    
+
     width: 100vw;
-    
+
 }
 
 .header-login {
@@ -118,7 +117,7 @@ button {
     margin: 0px;
 }
 
-.box{
+.box {
     flex: 1;
     background-color: #eae7cd;
     border-radius: 10px;
@@ -130,9 +129,10 @@ button {
     width: 500px;
     font-family: sans-serif;
     overflow-y: scroll;
-    
+
 }
-#boxTitulo{
+
+#boxTitulo {
     display: flex;
     font-size: 20px;
     align-items: center;
@@ -169,7 +169,7 @@ button {
     align-items: center;
 }
 
-.menu_lateral{
+.menu_lateral {
     padding: 40px;
     position: relative;
     bottom: 0;
@@ -180,27 +180,6 @@ button {
     flex-direction: column;
     align-items: center;
     padding-top: 0px;
-}
-
-#aside-button{
-    padding: 10px;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    font-size: 14px;
-    border-radius: 25px;
-    width: 155px;
-    border-style: solid;
-    border-color: black;
-
-}
-
-#aside-button:hover {
-    background-color: #333;
-}
-
-h1 {
-    margin-right: 50px;
 }
 
 #user-logo {
@@ -223,7 +202,7 @@ h1 {
     box-sizing: border-box;
     list-style: none;
     position: relative;
-    
+
 }
 
 
@@ -234,11 +213,12 @@ h1 {
     right: 10px;
     top: 5px;
     visibility: hidden;
-}   
+}
 
 .task:hover .fa-regular.fa-trash-can {
-    visibility: visible; /* Show the icon on hover */
-    
+    visibility: visible;
+    /* Show the icon on hover */
+
 }
 
 
@@ -252,22 +232,52 @@ h1 {
     text-overflow: ellipsis;
     white-space: nowrap;
     font-family: Arial, Helvetica, sans-serif;
- 
+
 }
 
-#to-do-list {
-    font-weight: bold;
-    
+.aside-button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    border-radius: 25px;
+    width: 155px;
+    border-style: solid;
+    border-color: black;
+
 }
 
 #tittle-aside {
     color: black;
     font-size: 20px;
     text-align: center;
-    padding: 2px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-style: solid;
+    width: 150%;
+
+}
+
+.menu_lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu_lateral li {
+    margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
     position: fixed;
-    bottom: 0;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -283,10 +293,10 @@ h1 {
 }
 
 textarea {
-    width: 100%; 
-    height: 100px; 
-    box-sizing: border-box; 
-    resize: none; 
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    resize: none;
     font-family: sans-serif;
     font-size: 14px;
 }
@@ -301,4 +311,75 @@ textarea {
 #modal-tittle {
     text-align: center;
     font-size: 26px;
+}
+
+/* editor.html*/
+
+#edit-page {
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    margin: 0;
+    background-image: url('bck_2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-edit {
+    background-color: #e85a4f;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #8e8d8a;
+    padding: 10px 20px;
+    width: 700px;
+    height: 500px;
+    text-align: center;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#description {
+    float: left;
+    width: 99%;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+#label-title-edit {
+    width: 50%;
+}
+
+#titlename {
+    width: 50%;
+}
+
+#stage {
+    float: left;
+    text-align: center;
+    width: 20%;
+}
+
+#save-edit {
+    float: left;
+    width: 12%;
+    border: #333;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    padding: 5px;
+    background-color: white;
+}
+
+#edit-note-footer {
+    background-color: #8e8d8a;
+    color: white;
+    text-align: center;
+    padding: 2px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
