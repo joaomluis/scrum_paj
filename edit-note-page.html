@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <script src="scripts.js" defer></script>
+    <script src="edit-note-page.js" defer></script>
     <title>Scrum | Log in</title>
 </head>
 
@@ -36,8 +36,8 @@
             <label>
                 Description:
             </label>
-            <textarea id="description" name="description" onfocus='myFunction()'>Describe the project tasks</textarea>
-            <button type="button" id="save-edit">Save</button>
+            <textarea id="description" name="description" onfocus='resetTextoPadrao()'>Describe the project tasks</textarea>
+            <button type="button" id="save-edit" onclick="saveTask()">Save</button>
         </form>
     </div>
     </main>
@@ -45,6 +45,5 @@
     <footer id="edit-note-footer" class="hidden">
         &copy; Projeto 1 - Programação Avançada em Java - AoR | by João Luís & João Morais | Universidade de Coimbra
     </footer>
-    <script src="edit-note-page.js"></script>
 </body>
 </html>

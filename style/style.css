@@ -206,21 +206,44 @@ button {
 }
 
 
-
 .fa-regular.fa-trash-can {
     color: #333;
     position: absolute;
     right: 10px;
     top: 5px;
     visibility: hidden;
+    cursor: pointer;
+}
+
+.fa-regular.fa-pen-to-square {
+    color: #333;
+    position: absolute;
+    right: 29px;
+    top: 5px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.task:hover .fa-regular.fa-pen-to-square {
+    visibility: visible;
 }
 
 .task:hover .fa-regular.fa-trash-can {
     visibility: visible;
-    /* Show the icon on hover */
-
 }
 
+.fa-regular.fa-eye {
+    color: #333;
+    position: absolute;
+    right: 52px;
+    top: 5px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.task:hover .fa-regular.fa-eye {
+    visibility: visible;
+}
 
 
 .task-description {

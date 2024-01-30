@@ -1,10 +1,17 @@
-function myFunction() {
+let storedTasks = JSON.parse(localStorage.getItem("listaTask")) || []; 
+let pencilId = localStorage.getItem('pencilId');
+let numericPencilId = parseInt(pencilId, 10);
+let taskWithId = storedTasks.find(task => task.id === numericPencilId);
+
+//faz reset da descrição caso o texto for o padrão. Poderá não acontecer já que deverá ter sempre dados, mas...
+function resetTextoPadrao() {
     let updatedDescription = document.getElementById('description').value;
     if(updatedDescription === "Describe the project tasks"){
     document.getElementById('description').value = "";
     }
 }
 
+// label com o user logado, código igual à main page
 document.addEventListener('DOMContentLoaded', function() {
     
     const username = localStorage.getItem('username');
@@ -13,3 +20,39 @@ document.addEventListener('DOMContentLoaded', function() {
         welcomeLabel.textContent = 'Welcome, ' + username;
     }
 });
+
+//update do conteúdo da task para a página a partit da storage
+document.addEventListener('DOMContentLoaded', function() {
+    var statusCorrection = taskWithId.status;
+    if(statusCorrection === "ToDo"){
+        statusCorrection = "To Do"
+    }
+    document.getElementById('titlename').value = taskWithId.title;
+    document.getElementById('stage').value = statusCorrection;
+    document.getElementById('description').value = taskWithId.description;
+});
+
+// função para salvar quando se carrega no botão (ver html). Grava a nova informação na storage, fazendo um update da lista de task. 
+function saveTask(){
+    taskWithId.title = document.getElementById("titlename").value;
+    var statusCorrection = document.getElementById("stage").value;
+    if(statusCorrection === "To Do"){
+        statusCorrection = "ToDo"
+    }
+    taskWithId.status = statusCorrection;
+    taskWithId.description = document.getElementById("description").value;
+    for (let i = 0; i < storedTasks.length; i++) {
+        const task = storedTasks[i];
+        if (task.id === numericPencilId) {
+            storedTasks[i] = taskWithId;
+            break;
+        }
+    }
+    
+    const confirmed = window.confirm("Do you want to confirm these changes?");
+    if (confirmed) {
+        localStorage.setItem("listaTask", JSON.stringify(storedTasks));
+        window.location.href = 'main-page.html';
+    } else {
+    }
+}
