@@ -97,19 +97,21 @@ function createTask() {
     if (taskName) {
         let taskId = createTaskId();
         let iconId = createTaskId();
+        let pencilId = createTaskId();
 
         let newTask = {
             title: taskName,
             description: taskDescription,
             id: taskId,
             iconId : iconId,
+            pencilId: pencilId,
             
             className: "task",
             status: "to-do",
             htmlContent: `
                 <div>
                     <i id="${iconId}" class="fa-regular fa-trash-can"></i>
-                    <i class="fa-regular fa-pen-to-square"> </i>
+                    <i id="${pencilId}" class="fa-regular fa-pen-to-square"> </i>
                     ${taskName}<p class="task-description"> ${taskDescription}</p>
                 </div>`
         };
@@ -127,6 +129,7 @@ function createTask() {
         // função para eliminar tarefas ao carregar no icone
 
         deleteTask(iconId, newTask);
+        openEdit(pencilId, newTask);
 
         document.getElementById("taskName").value = "";
         document.getElementById("text-area").value = "";
@@ -224,6 +227,7 @@ function loadTasksToCorretctList() {
 
             setupDragAndDrop();
             deleteTask(task.iconId, task);
+            openEdit(task.pencilId, task);
         });
     }
 }
@@ -239,6 +243,15 @@ function deleteTask(iconId, task) {
         }
     });
 }
+
+function openEdit(pencilId, task){
+    document.getElementById(pencilId).addEventListener("click", function(event) {
+        event.preventDefault();
+        localStorage.setItem("taskId", task.id.toString());
+        window.location.href = 'edit-note-page.html';
+    });
+}
+
 
 //função para apagar a task selecionada da local storage
 function deleteTaskFromStorage(task) {

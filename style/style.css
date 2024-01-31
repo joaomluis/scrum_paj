@@ -213,6 +213,7 @@ button {
     right: 10px;
     top: 5px;
     visibility: hidden;
+    cursor: pointer;
 }
 
 .fa-regular.fa-pen-to-square {
@@ -221,6 +222,7 @@ button {
     right: 29px;
     top: 5px;
     visibility: hidden;
+    cursor: pointer;
 }
 
 .task:hover .fa-regular.fa-pen-to-square {
