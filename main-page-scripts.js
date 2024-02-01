@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    loadTasksToCorretctList();
+    loadTasksToCorretctList(); //carrega todas as tasks em local storage para as colunas correspondentes
 
     // fecha modal de ver a task ao carregar em qualquer lado (fora dela)
     window.onclick = function(event) {
@@ -9,33 +9,43 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = "none";
         }
     }
+
+    //guarda o nome utilizado para logar na storage e atribui à label no header 
+    //assim o username fica sempre disponivel 
+    const username = localStorage.getItem('username');
+
+    const welcomeLabel = document.getElementById('welcome-user');
+    if (welcomeLabel) {
+        welcomeLabel.textContent = 'Welcome, ' + username;
+    }
 // funcionalidade de drag 
     const boxes = document.querySelectorAll('.box');
     const tasks = document.querySelectorAll('.task')
 
+    //percorre todos os elementos com a classe de task e a atribui dois event listeners
+    // o de dragstart e de dragend
     tasks.forEach(task => {
-        addDragEventListenersToTask(task);
+        addDragEventListenersToTask(task); // função que adiciona event listeners do drag 
     });
 
+    //percorre todos os elementos com classe box e atribui o event listener dragover
+    //através do elemento que está a ser arrastado vai buscar o objeto que esse elemento representa
+    //e muda o status do objeto conforme a box em que o elemento for largado
     boxes.forEach(box => {
         box.addEventListener('dragover', e => {
             e.preventDefault();
             const draggableTask = document.querySelector('.dragging');
             
             if (draggableTask) {
-                // Get the task object associated with the dragged element
+                
                 const taskId = draggableTask.id;
                 const tasks = loadTasksFromLocalStorage();
                 const draggedTask = tasks.find(task => task.id === taskId);
     
                 if (draggedTask) {
-                    // Update the status of the task
+                    
                     draggedTask.status = box.id;
-    
-                    // Save the updated tasks array to local storage
                     saveTasksToLocalStorage(tasks);
-    
-                    // Append the dragged task to the new box
                     box.appendChild(draggableTask);
                 }
             }
@@ -43,32 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//função que adiciona os event listeners do drag, é chamada quando a página é carregada
+// ou quando uma task nova é criada
 function addDragEventListenersToTask(task) {
     task.addEventListener('dragstart', () => {
         task.classList.add('dragging')
     });
-
     task.addEventListener('dragend', () => {
         task.classList.remove('dragging')
     });
 }
 
-// scritps para arrastar
-
-
-
-
-
-//função para fazer get do username da storage e atribuir esse username à label da pagina incial
-document.addEventListener('DOMContentLoaded', function() {
-    const username = localStorage.getItem('username');
-
-    const welcomeLabel = document.getElementById('welcome-user');
-    if (welcomeLabel) {
-        welcomeLabel.textContent = 'Welcome, ' + username;
-    }
-});
-
+//remove o username da local storage e regressa à página inicial
 function logout() {
     localStorage.removeItem('username');
     window.location.href='index.html';
