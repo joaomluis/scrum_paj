@@ -54,3 +54,12 @@ function saveTask(){
         window.location.href = 'main-page.html';
     }
 }
+
+function goMain(){
+    window.location.href='main-page.html';
+}
+
+function logout() {
+    localStorage.removeItem('username');
+    window.location.href='index.html';
+}

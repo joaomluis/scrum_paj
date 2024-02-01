@@ -63,8 +63,6 @@ function setupDragAndDrop() {
 
 }
 
-
-
 //função para fazer get do username da storage e atribuir esse username à label da pagina incial
 document.addEventListener('DOMContentLoaded', function() {
     const username = localStorage.getItem('username');
