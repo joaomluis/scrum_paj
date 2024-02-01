@@ -409,3 +409,7 @@ textarea {
     bottom: 0;
     width: 100%;
 }
+
+.task.dragging {
+    opacity: 0.5;
+}

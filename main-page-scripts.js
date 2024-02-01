@@ -1,67 +1,61 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
+
     loadTasksToCorretctList();
-};
 
-// scritps para arrastar
-
-function setupDragAndDrop() {
+    // fecha modal de ver a task ao carregar em qualquer lado (fora dela)
+    window.onclick = function(event) {
+        var modal = document.getElementById("seeTaskModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+// funcionalidade de drag 
     const boxes = document.querySelectorAll('.box');
     const tasks = document.querySelectorAll('.task')
 
     tasks.forEach(task => {
-        task.addEventListener('dragstart', dragStart);
-        task.addEventListener('dragend', dragEnd);  
+        addDragEventListenersToTask(task);
     });
 
     boxes.forEach(box => {
-        box.addEventListener('dragover', dragOver);
-        box.addEventListener('dragenter', dragEnter);
-        box.addEventListener('dragleave', dragLeave);
-        box.addEventListener('drop', drop);
+        box.addEventListener('dragover', e => {
+            e.preventDefault();
+            const draggableTask = document.querySelector('.dragging');
+            
+            if (draggableTask) {
+                // Get the task object associated with the dragged element
+                const taskId = draggableTask.id;
+                const tasks = loadTasksFromLocalStorage();
+                const draggedTask = tasks.find(task => task.id === taskId);
+    
+                if (draggedTask) {
+                    // Update the status of the task
+                    draggedTask.status = box.id;
+    
+                    // Save the updated tasks array to local storage
+                    saveTasksToLocalStorage(tasks);
+    
+                    // Append the dragged task to the new box
+                    box.appendChild(draggableTask);
+                }
+            }
+        });
+    });
+});
+
+function addDragEventListenersToTask(task) {
+    task.addEventListener('dragstart', () => {
+        task.classList.add('dragging')
     });
 
-    function dragStart() {
-        console.log("dragStart")
-        this.classList.add('dragging');
-    }
-
-    function dragEnd() {
-        this.classList.remove('dragging');
-    }
-
-    function dragOver(e) {
-        e.preventDefault();
-    }
-
-    function dragEnter() {
-        this.classList.add('over');
-    }
-
-    function dragLeave() {
-        this.classList.remove('over');
-    }
-
-    function drop() {
-        console.log("Dropping")
-        const draggingTask = document.querySelector('.dragging');
-        console.log(draggingTask)
-        this.appendChild(draggingTask);
-        draggingTask.classList.remove('over');
-
-        if (this.id === 'to-do-list') {
-            draggingTask.status = 'to-do';
-            console.log('changed');
-        } else if (this.id === 'doing-list') {
-            draggingTask.status = 'doing';
-            console.log('changed');
-        } else if (this.id === 'done-list') {
-            draggingTask.status = 'done';
-            console.log('changed');
-        }
-        updateTaskInLocalStorage(draggingTask);
-    }
-
+    task.addEventListener('dragend', () => {
+        task.classList.remove('dragging')
+    });
 }
+
+// scritps para arrastar
+
+
 
 
 
@@ -105,7 +99,7 @@ function createTask() {
             id: taskId,
             iconId : iconId,
             pencilId: pencilId,
-            
+            draggable: true,
             className: "task",
             status: "to-do",
             htmlContent: `
@@ -116,10 +110,12 @@ function createTask() {
                 </div>`
         };
         addTaskToLocalStorage(newTask);
+        
 
-        let toDoList = document.getElementById("to-do-list");
+        let toDoList = document.getElementById("to-do");
         
         let newTaskAsElement = convertTaskObjectToElement(newTask);
+        addDragEventListenersToTask(newTaskAsElement);
         toDoList.appendChild(newTaskAsElement);
 
         newTaskAsElement.addEventListener("dblclick", function() {
@@ -134,7 +130,6 @@ function createTask() {
         document.getElementById("taskName").value = "";
         document.getElementById("text-area").value = "";
 
-        setupDragAndDrop();
         closeModal();
     
     }
@@ -201,9 +196,9 @@ function updateTaskInLocalStorage(updatedTask) {
 //função que vai buscar as tasks à localStorage e carrega nas colunas certas de acordo com o status
 function loadTasksToCorretctList() {
     let tasksSaved = JSON.parse(localStorage.getItem('tasks'));
-    let toDoList = document.getElementById("to-do-list");
-    let doingList = document.getElementById("doing-list");
-    let doneList = document.getElementById("done-list");
+    let toDoList = document.getElementById("to-do");
+    let doingList = document.getElementById("doing");
+    let doneList = document.getElementById("done");
 
     if (tasksSaved === null) {
         console.log('empty array');
@@ -225,7 +220,7 @@ function loadTasksToCorretctList() {
                 showTaskDetails(task.title, task.description);
             });
 
-            setupDragAndDrop();
+        
             deleteTask(task.iconId, task);
             openEdit(task.pencilId, task);
         });
@@ -286,3 +281,7 @@ function closeSeeTaskModal() {
     var modal = document.getElementById("seeTaskModal");
     modal.style.display = "none";
 }
+
+
+
+
