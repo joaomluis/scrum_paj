@@ -61,7 +61,7 @@ function addDragEventListenersToTask(task) {
 
 //função para fazer get do username da storage e atribuir esse username à label da pagina incial
 document.addEventListener('DOMContentLoaded', function() {
-    const username = sessionStorage.getItem('username');
+    const username = localStorage.getItem('username');
 
     const welcomeLabel = document.getElementById('welcome-user');
     if (welcomeLabel) {
@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function logout() {
+    localStorage.removeItem('username');
     window.location.href='index.html';
 }
 
@@ -102,12 +103,7 @@ function createTask() {
             draggable: true,
             className: "task",
             status: "to-do",
-            htmlContent: `
-                <div>
-                    <i id="${iconId}" class="fa-regular fa-trash-can"></i>
-                    <i id="${pencilId}" class="fa-regular fa-pen-to-square"> </i>
-                    ${taskName}<p class="task-description"> ${taskDescription}</p>
-                </div>`
+            
         };
         addTaskToLocalStorage(newTask);
         
@@ -144,7 +140,12 @@ function createTaskId() {
 
 function convertTaskObjectToElement(task) {
     let newTaskElement = document.createElement('li');
-    newTaskElement.innerHTML = task.htmlContent;
+    newTaskElement.innerHTML = `
+        <div>
+            <i id="${task.iconId}" class="fa-regular fa-trash-can"></i>
+            <i id="${task.pencilId}" class= "fa-regular fa-pen-to-square"> </i>
+            ${task.title}<p class="task-description"> ${task.description}</p>
+        </div>`;
     newTaskElement.id = task.id;
     newTaskElement.iconId = task.id;
     newTaskElement.className = task.className;
