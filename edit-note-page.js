@@ -1,6 +1,16 @@
-let storedTasks = JSON.parse(localStorage.getItem("tasks")) || []; 
+let totalLists = getAllTasks();
 let taskIdStorage = localStorage.getItem('taskId');
-let taskWithId = storedTasks.find(task => task.id === taskIdStorage);
+//criar uma lista única
+let taskWithId = totalLists.flat().find(task => task.id === taskIdStorage);
+
+//criar uma lista com várias listas
+function getAllTasks() {
+    let storedTasksToDo = JSON.parse(localStorage.getItem("to-do-tasks")) || [];
+    let storedTasksDoing = JSON.parse(localStorage.getItem("doing-tasks")) || [];
+    let storedTasksDone = JSON.parse(localStorage.getItem("done-tasks")) || [];
+
+    return [storedTasksToDo, storedTasksDoing, storedTasksDone];
+}
 
 //faz reset da descrição caso o texto for o padrão. Poderá não acontecer já que deverá ter sempre dados, mas...
 function resetTextoPadrao() {
@@ -32,25 +42,47 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // função para salvar quando se carrega no botão (ver html). Grava a nova informação na storage, fazendo um update da lista de task. 
-function saveTask(){
-    taskWithId.title = document.getElementById("titlename").value;
-    var statusCorrection = document.getElementById("stage").value;
-    if(statusCorrection === "To Do"){
-        statusCorrection = "to-do"
-    }
-    taskWithId.status = statusCorrection;
-    taskWithId.description = document.getElementById("description").value;
-    for (let i = 0; i < storedTasks.length; i++) {
-        const task = storedTasks[i];
-        if (task.id === taskIdStorage) {
-            storedTasks[i] = taskWithId;
-            break;
+function saveTask() {
+    let taskIdStorage = localStorage.getItem('taskId');
+    let storedTasksToDo = JSON.parse(localStorage.getItem("to-do-tasks")) || [];
+    let storedTasksDoing = JSON.parse(localStorage.getItem("doing-tasks")) || [];
+    let storedTasksDone = JSON.parse(localStorage.getItem("done-tasks")) || [];
+
+    // procurar a task na lista correta todo/doing/done
+    if (taskWithId = storedTasksToDo.find(task => task.id === taskIdStorage)) {
+        // modificar o status
+        taskWithId.title = document.getElementById("titlename").value;
+        let statusCorrection = document.getElementById("stage").value;
+        if (statusCorrection === "To Do") {
+            statusCorrection = "to-do";
         }
+        taskWithId.status = statusCorrection;
+        taskWithId.description = document.getElementById("description").value;
+    } else if (taskWithId = storedTasksDoing.find(task => task.id === taskIdStorage)) {
+        taskWithId.title = document.getElementById("titlename").value;
+        let statusCorrection = document.getElementById("stage").value;
+        if (statusCorrection === "To Do") {
+            statusCorrection = "to-do";
+        }
+        taskWithId.status = statusCorrection;
+        taskWithId.description = document.getElementById("description").value;
+    } else if (taskWithId = storedTasksDone.find(task => task.id === taskIdStorage)) {
+        taskWithId.title = document.getElementById("titlename").value;
+        let statusCorrection = document.getElementById("stage").value;
+        if (statusCorrection === "To Do") {
+            statusCorrection = "to-do";
+        }
+        taskWithId.status = statusCorrection;
+        taskWithId.description = document.getElementById("description").value;
     }
-    
+
+    // update das tasks na storage
+    localStorage.setItem("to-do-tasks", JSON.stringify(storedTasksToDo));
+    localStorage.setItem("doing-tasks", JSON.stringify(storedTasksDoing));
+    localStorage.setItem("done-tasks", JSON.stringify(storedTasksDone));
+
     const confirmed = window.confirm("Do you want to confirm these changes?");
     if (confirmed) {
-        localStorage.setItem("tasks", JSON.stringify(storedTasks));
         window.location.href = 'main-page.html';
     }
 }
