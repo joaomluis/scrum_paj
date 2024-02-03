@@ -90,25 +90,13 @@ button {
     align-items: center;
 }
 
-#login-page-footer {
+#page-footer {
     background-color: #8e8d8a;
     color: white;
     text-align: center;
     margin-top: auto;
     width: 100%;
     margin-bottom: 0px;
-    z-index: 3
-}
-
-#main-page-footer {
-    background-color: #8e8d8a;
-    color: white;
-    text-align: center;
-    padding: 2px;
-    bottom: 0;
-
-    width: 100vw;
-
 }
 
 .maincenter-edit{
@@ -181,15 +169,6 @@ button {
     color: #e85a4f;
 }
 
-
-.footerMain {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-}
 
 .maincenter {
     display: flex;
@@ -269,19 +248,6 @@ button {
     /* Show the icon on hover */
 
 }
-
-.fa-regular.fa-eye {
-    color: #333;
-    position: absolute;
-    right: 52px;
-    top: 5px;
-    visibility: hidden;
-}
-
-.task:hover .fa-regular.fa-eye {
-    visibility: visible;   
-}
-
 
 .task-description {
     color: black;
@@ -442,16 +408,6 @@ background-image: url('bck_2.jpg');
     text-align: center;
     padding: 5px;
     background-color: white;
-}
-
-#edit-note-footer {
-    background-color: #8e8d8a;
-    color: white;
-    text-align: center;
-    padding: 2px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 .task.dragging {
