@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // o de dragstart e de dragend
     tasks.forEach(task => {
         addDragEventListenersToTask(task); // função que adiciona event listeners do drag 
+        addDoubleClickEventListenersToTask(task); //função que adiciona os event listeners de double click
     });
 
     //percorre todos os elementos com classe box e atribui o event listener dragover
@@ -57,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function addDoubleClickEventListenersToTask(task) {
+    task.addEventListener('dblclick', function () {
+        showTaskDetails(task.title, task.description);
+    });
+}
 
 function updateAndSaveTaskStatus(taskId, newStatus) {
     // Retrieve all tasks from localStorage
@@ -189,6 +196,7 @@ function createTask() {
         //adiciona funcionalidade de double click para abrir modal com os detalhes da task
         newTaskAsElement.addEventListener("dblclick", function() {
             showTaskDetails(taskName, taskDescription); 
+            console.log("OI")
         });
 
         deleteTask(iconId, newTask); //adiciona funcionalidade de apagar 
@@ -220,9 +228,10 @@ function convertTaskObjectToElement(task) {
         </div>`;
     newTaskElement.id = task.id;
     newTaskElement.className = task.className;
-    
     newTaskElement.draggable = true;
     newTaskElement.status = task.status;
+    newTaskElement.title = task.title;
+    newTaskElement.description = task.description;
     return newTaskElement; 
 }
 
@@ -331,8 +340,8 @@ function showTaskDetails(taskTitle, taskDescription) {
     var modalContent = modal.getElementsByClassName("modal-content")[0];
 
     // Get the input fields for the task title and description
-    var taskNameInput = modalContent.querySelector("#taskName");
-    var taskDescriptionTextArea = modalContent.querySelector("#text-area");
+    var taskNameInput = modalContent.querySelector("#taskName1");
+    var taskDescriptionTextArea = modalContent.querySelector("#text-area1");
 
     // Populate the input fields with the task details
     taskNameInput.value = taskTitle;
