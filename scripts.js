@@ -1,4 +1,4 @@
-// buttonClickHandler.js
+// função para ir para a página main, obrigando o utilizador a preencher algo nos campos de input
 function login() {
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;

@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Adicionar a função de doubleclick a uma tarefa
 function addDoubleClickEventListenersToTask(task) {
     task.addEventListener('dblclick', function () {
         showTaskDetails(task.title, task.description);
@@ -66,7 +67,7 @@ function addDoubleClickEventListenersToTask(task) {
 }
 
 function updateAndSaveTaskStatus(taskId, newStatus) {
-    // Retrieve all tasks from localStorage
+    // Vai buscar todas as tasks da localStorage
 
     let taskToUpdate;
 
@@ -107,8 +108,7 @@ function updateAndSaveTaskStatus(taskId, newStatus) {
     }
 }
 
-
-
+//inicializa as arrays da localstorage
 function arraysInitializer() {
     let toDoTasks = JSON.parse(localStorage.getItem('to-do-tasks'));
     let doingTasks = JSON.parse(localStorage.getItem('doing-tasks'));
@@ -196,7 +196,6 @@ function createTask() {
         //adiciona funcionalidade de double click para abrir modal com os detalhes da task
         newTaskAsElement.addEventListener("dblclick", function() {
             showTaskDetails(taskName, taskDescription); 
-            console.log("OI")
         });
 
         deleteTask(iconId, newTask); //adiciona funcionalidade de apagar 
@@ -272,11 +271,12 @@ function loadTasksToCorretctList() {
     }
 }
 
+// função para juntar todas as arrays do local storge numa só
 function mergeAllTaskArrays() {
     let toDoTasksSaved = JSON.parse(localStorage.getItem('to-do-tasks'));
     let doingTasksSaved = JSON.parse(localStorage.getItem('doing-tasks'));
     let doneTasksSaved = JSON.parse(localStorage.getItem('done-tasks'));
-
+    //utilização de spread/rest operator para fazer merge das arrays
     return [...toDoTasksSaved, ...doingTasksSaved, ...doneTasksSaved];
 }
 
@@ -292,10 +292,11 @@ function deleteTask(iconId, task) {
     });
 }
 
+// grava o id da task seleccionada na local storage e reencaminha para a página edit
 function openEdit(pencilId, task){
     document.getElementById(pencilId).addEventListener("click", function(event) {
         event.preventDefault();
-        localStorage.setItem("taskId", task.id.toString());
+        localStorage.setItem("taskId", task.id);
         window.location.href = 'edit-note-page.html';
     });
 }
@@ -334,21 +335,22 @@ function saveAllTaskArrays(lists) {
     localStorage.setItem('done-tasks', JSON.stringify(doneTasks));
 }
 
-
+//abre um modal para apresentação dos dados de uma task
 function showTaskDetails(taskTitle, taskDescription) {
     var modal = document.getElementById("seeTaskModal");
     var modalContent = modal.getElementsByClassName("modal-content")[0];
 
-    // Get the input fields for the task title and description
+    // Inputs para o título e descrição da task
     var taskNameInput = modalContent.querySelector("#taskName1");
     var taskDescriptionTextArea = modalContent.querySelector("#text-area1");
 
-    // Populate the input fields with the task details
+    // Preenchimento dos campos de input
     taskNameInput.value = taskTitle;
     taskDescriptionTextArea.value = taskDescription;
     modal.style.display = "block";
 }
 
+//fecha o task modal
 function closeSeeTaskModal() {
     var modal = document.getElementById("seeTaskModal");
     modal.style.display = "none";

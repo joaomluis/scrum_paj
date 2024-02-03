@@ -87,10 +87,12 @@ function saveTask() {
     }
 }
 
+//reencaminha para a main
 function goMain(){
     window.location.href='main-page.html';
 }
 
+//reencaminha para o login i remove o username da local storage
 function logout() {
     localStorage.removeItem('username');
     window.location.href='index.html';
