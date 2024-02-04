@@ -400,6 +400,8 @@ textarea {
     margin-top: 5%;
     font-family: sans-serif;
     color: #e85a4f;
+    margin-bottom: 50px;
+    overflow-y: auto;
 }
 
 /* Formatação para o título na box*/
