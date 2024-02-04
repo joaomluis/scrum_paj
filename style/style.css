@@ -1,6 +1,8 @@
 /* ==============================
     General
    ============================== */
+
+/* Estilos para o container main */
 .main {
     background-color: #eae7cd;
     border-radius: 15px;
@@ -12,26 +14,26 @@
     margin-top: 10%;
 }
 
+/* Estilos para o body, inclui o display flex */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-main {
-    flex-grow: 1;
-}
-
+/* Remove os pontos da lista desordenada */
 ul {
     list-style-type: none;
 }
 
+/* Estilo para o h3*/
 h3 {
     color: black;
     font-family: sans-serif;
     font-weight: bolder;
 }
 
+/* Formatação prara labels*/
 label {
     display: block;
     width: 100%;
@@ -41,6 +43,7 @@ label {
     margin-top: 15px;
 }
 
+/* Formatação para campos de input*/
 input {
     display: block;
     width: 100%;
@@ -51,6 +54,7 @@ input {
     border-radius: 5px;
 }
 
+/* Formatação para butões*/
 button {
     margin-bottom: 10px;
     margin-top: 15px;
@@ -64,6 +68,7 @@ button {
     font-weight: bold;
 }
 
+/* Formatação para footer*/
 #page-footer {
     background-color: #8e8d8a;
     color: white;
@@ -73,11 +78,13 @@ button {
     margin-bottom: 0px;
 }
 
+/* Formatação para o logo no main*/
 #main-logo {
     max-width: 100px;
     height: auto;
 }
 
+/* Formatação para os headers*/
 .header-main {
     display: flex;
     justify-content: space-between;
@@ -86,6 +93,7 @@ button {
     font-family: sans-serif;
 }
 
+/* Formatação para o background do main*/
 #mainbody {
     background-image: url('bck_2.jpg');
     background-size: cover;
@@ -94,6 +102,7 @@ button {
     margin: 0px;
 }
 
+/* Formatação para a label welcome*/
 #welcome-user {
     display: flex;
     font-size: 20px;
@@ -104,11 +113,13 @@ button {
     color: #e85a4f;
 }
 
+/* Formatação flex no main*/
 .maincenter {
     display: flex;
     height: 85vh;
 }
 
+/* Formatação para o aside*/
 .menu_lateral {
     padding: 40px;
     position: relative;
@@ -124,6 +135,7 @@ button {
     transition: opacity 0.5s ease;
 }
 
+/* Ícon de utilizador*/
 #user-logo {
     max-width: 40px;
     height: auto;
@@ -131,6 +143,7 @@ button {
     cursor: pointer;
 }
 
+/* Formatação para as tasks*/
 .task {
     margin: 0 0 6px;
     padding: 10px;
@@ -146,6 +159,7 @@ button {
     position: relative;
 }
 
+/* Formatação para os botões no aside*/
 .aside-button {
     padding: 10px;
     cursor: pointer;
@@ -158,6 +172,7 @@ button {
     border-color: black;
 }
 
+/* Formatação para o título do aside*/
 #tittle-aside {
     color: black;
     font-size: 20px;
@@ -169,20 +184,24 @@ button {
     width: 150%;
 }
 
+/* Formatação para o menu lateral quando o modal fica disponível*/
 .menu_lateral.modal-open {
     opacity: 0.5;
 }
 
+/* Formatação para os elementos no menu lateral*/
 .menu_lateral ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* Formatação para os elementos no menu lateral*/
 .menu_lateral li {
     margin-bottom: 10px;
 }
 
+/* Formatação para o textarea no modal*/
 textarea {
     width: 100%;
     height: 100px;
@@ -192,6 +211,7 @@ textarea {
     font-size: 14px;
 }
 
+/* Formatação para o description no modal*/
 #description {
     float: left;
     width: 99%;
@@ -203,6 +223,7 @@ textarea {
     Index/Login
    ============================== */
 
+/* Formatação para o body do login*/
 #login-page {
     display: flex;
     align-items: center;
@@ -219,20 +240,24 @@ textarea {
     color: #e85a4f;
 }
 
+/* Formatação para a label do login*/
 .label-login{
     margin-left: 3px;
 }
 
+/* Formatação para a label recover-password no login*/
 #recover-password {
     font-size: 13px;
 }
 
+/* Formatação para os elementos na box de login*/
 .wrap {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Formatação para o header no login*/
 .header-login {
     display: flex;
     width: 20%;
@@ -247,7 +272,7 @@ textarea {
     Main/2nd page
    ============================== */
 
-
+/* Formatação para as boxes no main*/
 .box {
     flex: 1;
     background-color: #eae7cd;
@@ -263,6 +288,7 @@ textarea {
     margin-top: 2%;
 }
 
+/* Formatação para o ícon de trash em cada task*/
 .fa-regular.fa-trash-can {
     color: #333;
     position: absolute;
@@ -272,6 +298,7 @@ textarea {
     cursor: pointer;
 }
 
+/* Formatação para o ícon de pen em cada task*/
 .fa-regular.fa-pen-to-square {
     color: #333;
     position: absolute;
@@ -281,15 +308,18 @@ textarea {
     cursor: pointer;
 }
 
+/* Aparece apenas quando há hover com o rato*/
 .task:hover .fa-regular.fa-pen-to-square {
     visibility: visible;
 }
 
+/* Aparece apenas quando há hover com o rato*/
 .task:hover .fa-regular.fa-trash-can {
     visibility: visible;
     /* Show the icon on hover */
 }
 
+/* Formatação das tasks*/
 .task-description {
     color: black;
     text-align: left;
@@ -301,6 +331,7 @@ textarea {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Formatação para os modals*/
 .modal {
     display: none;
     position: fixed;
@@ -312,6 +343,7 @@ textarea {
     z-index: 10;
 }
 
+/* Formatação para o conteúdo dos modals*/
 .modal-content {
     position: absolute;
     top: 50%;
@@ -325,6 +357,7 @@ textarea {
     z-index: 3;
 }
 
+/* Formatação para o ícon de fechar o modal*/
 .close-modal {
     position: absolute;
     top: 10px;
@@ -333,11 +366,13 @@ textarea {
     font-size: 26px;
 }
 
+/* Formatação para o título dos modals*/
 #modal-tittle {
     text-align: center;
     font-size: 26px;
 }
 
+/* Formatação para a task enquanto se arrasta*/
 .task.dragging {
     opacity: 0.5;
 }
@@ -346,6 +381,7 @@ textarea {
     Edit/3rd page
    ============================== */
 
+/* Formatação para o main da 3ª página*/
 .main-edit {
     background-color: #eae7cd;
     border-radius: 15px;
@@ -362,20 +398,24 @@ textarea {
     color: #e85a4f;
 }
 
+/* Formatação para o título na box*/
 #label-title-edit {
     width: 50%;
 }
 
+/* Formatação para o título na box*/
 #titlename {
     width: 50%;
 }
 
+/* Formatação para a combobox*/
 #stage {
     float: left;
     text-align: center;
     width: 20%;
 }
 
+/* Formatação para o botão save*/
 #save-edit {
     float: left;
     width: 12%;
