@@ -59,18 +59,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Adicionar a função de doubleclick a uma tarefa
+// |||||||||||||| FUNÇÕES PARA ADICIONAR EVENT LISTENERS ÀS TASKS ||||||||||||||||||||||
+
+//função para adicionar double click e mostrar o modal com os detalhes da task
 function addDoubleClickEventListenersToTask(task) {
     task.addEventListener('dblclick', function () {
         showTaskDetails(task.title, task.description);
     });
 }
 
+//função que adiciona os event listeners do drag, é chamada quando a página é carregada
+// ou quando uma task nova é criada
+function addDragEventListenersToTask(task) {
+    task.addEventListener('dragstart', () => {
+        task.classList.add('dragging')
+    });
+    task.addEventListener('dragend', () => {
+        task.classList.remove('dragging')
+    });
+}
+
+// |||||||||||||| FUNCIONALIDADE DE MUDAR A TASK DE ARRAY E O SEU STATUS COM DRAG |||||||||||
+
 function updateAndSaveTaskStatus(taskId, newStatus) {
     // Vai buscar todas as tasks da localStorage
 
     let taskToUpdate;
-
     const allArraysList = loadAllTaskArraysIntoOne();
 
     for (const list of allArraysList) {
@@ -103,66 +117,19 @@ function updateAndSaveTaskStatus(taskId, newStatus) {
                 doneTasks.push(taskToUpdate);
                 break;
         }
-
         saveAllTaskArrays(allArraysList)
     }
 }
 
-//inicializa as arrays da localstorage
-function arraysInitializer() {
-    let toDoTasks = JSON.parse(localStorage.getItem('to-do-tasks'));
-    let doingTasks = JSON.parse(localStorage.getItem('doing-tasks'));
-    let doneTasks = JSON.parse(localStorage.getItem('done-tasks'));
+// ||||||||||||||| FUNÇÕES LIGADAS À CRIAÇÃO E INTERÇÃO DAS TASKS ||||||||||||||||||||||||||||||||||||||||||||
 
-    if (toDoTasks === null) {
-        localStorage.setItem('to-do-tasks', JSON.stringify(newArray = []));
-    }
-    
-    if (doingTasks === null) {
-        localStorage.setItem('doing-tasks', JSON.stringify(newArray = []));
-    }
-
-    if (doneTasks === null) {
-        localStorage.setItem('done-tasks', JSON.stringify(newArray = []));
-    }
-}
-
-//função que adiciona os event listeners do drag, é chamada quando a página é carregada
-// ou quando uma task nova é criada
-function addDragEventListenersToTask(task) {
-    task.addEventListener('dragstart', () => {
-        task.classList.add('dragging')
-    });
-    task.addEventListener('dragend', () => {
-        task.classList.remove('dragging')
-    });
-}
-
-//remove o username da local storage e regressa à página inicial
-function logout() {
-    localStorage.removeItem('username');
-    window.location.href='index.html';
-}
-//função para abrir o modal de criar tasks
-function openModal() {
-    var modal = document.getElementById("taskModal");
-    modal.style.display = "block";
-}
-
-//função para fechar o modal de criar tasks
-function closeModal() {
-    var modal = document.getElementById("taskModal");
-    modal.style.display = "none";
-}
 //função que vai buscar o input no modal de criar tarefas, cria um objeto com esses dados e ids através
 //da função que criar IDs, adiciona esse objeto à local storage e adiciona todas as funcionalidades esperadas
 //de uma task, por fim cria um elemento html a partir do objeto e adiciona esse elemento à lista do to-do
-
 function createTask() {
     let taskName = document.getElementById("taskName").value;
     let taskDescription = document.getElementById("text-area").value;
     
-
     if (taskName) {
         let taskId = createTaskId();
         let iconId = createTaskId();
@@ -177,7 +144,6 @@ function createTask() {
             draggable: true,
             className: "task",
             status: "to-do",
-            
         };
         
         //adiciona a task à array da local storage do to-do
@@ -186,7 +152,6 @@ function createTask() {
         localStorage.setItem('to-do-tasks', JSON.stringify(toDoTaskStorage));
 
 
-        
         let toDoList = document.getElementById("to-do");
         
         let newTaskAsElement = convertTaskObjectToElement(newTask); //cria elemento html da task a partir do objeto
@@ -205,7 +170,6 @@ function createTask() {
         document.getElementById("taskName").value = "";
         document.getElementById("text-area").value = "";
         closeModal();
-    
     }
 }
 
@@ -234,11 +198,25 @@ function convertTaskObjectToElement(task) {
     return newTaskElement; 
 }
 
-// função que adiciona task à array na local storage, tmb verifica se dita array existe, 
-// se não exisitir cria uma e guarda na local storage com o saveTasksToLocalStorage
-function saveTasksToLocalStorage(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+//função para apagar a task selecionada da local storage
+function deleteTaskFromStorage(taskId) {
+
+    const lists = loadAllTaskArraysIntoOne();
+
+    //faz loop por todas as tasks das listas até encontrar um id igual ao id passado
+    //no parametro, 
+    for (const list of lists) {
+        const taskIndex = list.findIndex(task => task.id === taskId);
+        if (taskIndex !== -1) {
+            list.splice(taskIndex, 1); // o indice onde vai começar a remover e qts elementos remove
+            break;
+        }
+    }
+
+    saveAllTaskArrays(lists);
+};
+
+// ||||||||||||||| FUNÇÃO PARA CARREGAR AS TASKS DA LOCAL STORAGE ||||||||||||||||
 
 //função que vai buscar as tasks à localStorage e carrega nas colunas certas de acordo com o status
 function loadTasksToCorretctList() {
@@ -271,7 +249,30 @@ function loadTasksToCorretctList() {
     }
 }
 
-// função para juntar todas as arrays do local storge numa só
+
+// |||||||||||||| FUNÇÕES PARA INTERAGIR COM A LOCAL STORAGE ||||||||||||||||||||||||
+
+//função chamada sempre que a página é carregada para verificar a existencia das arrays 
+//na local storage, se não existe cria essas arrays
+function arraysInitializer() {
+    let toDoTasks = JSON.parse(localStorage.getItem('to-do-tasks'));
+    let doingTasks = JSON.parse(localStorage.getItem('doing-tasks'));
+    let doneTasks = JSON.parse(localStorage.getItem('done-tasks'));
+
+    if (toDoTasks === null) {
+        localStorage.setItem('to-do-tasks', JSON.stringify(newArray = []));
+    }
+    
+    if (doingTasks === null) {
+        localStorage.setItem('doing-tasks', JSON.stringify(newArray = []));
+    }
+
+    if (doneTasks === null) {
+        localStorage.setItem('done-tasks', JSON.stringify(newArray = []));
+    }
+}
+
+//agrupa todas as arrays da local storage numa só
 function mergeAllTaskArrays() {
     let toDoTasksSaved = JSON.parse(localStorage.getItem('to-do-tasks'));
     let doingTasksSaved = JSON.parse(localStorage.getItem('doing-tasks'));
@@ -279,6 +280,26 @@ function mergeAllTaskArrays() {
     //utilização de spread/rest operator para fazer merge das arrays
     return [...toDoTasksSaved, ...doingTasksSaved, ...doneTasksSaved];
 }
+
+//agrupa as 3 arrays diferentes numa lista de arrays
+function loadAllTaskArraysIntoOne() {
+    let toDoTasks = JSON.parse(localStorage.getItem('to-do-tasks'));
+    let doingTasks = JSON.parse(localStorage.getItem('doing-tasks'));
+    let doneTasks = JSON.parse(localStorage.getItem('done-tasks'));
+
+    return [toDoTasks, doingTasks, doneTasks];
+}
+//função que recebe uma array de arrays e através da sua descontrução permite guardar na local
+//storage as alteraçoes em cada array
+function saveAllTaskArrays(lists) {
+    const [toDoTasks, doingTasks, doneTasks] = lists; //extrai as arrays através da descontrução da array inicial
+
+    localStorage.setItem('to-do-tasks', JSON.stringify(toDoTasks));
+    localStorage.setItem('doing-tasks', JSON.stringify(doingTasks));
+    localStorage.setItem('done-tasks', JSON.stringify(doneTasks));
+}
+
+// |||||||||||||||||||| FUNÇÕES PARA ATRIBUIR FUNCIONALIDADES AOS ICONES DE EDITAR E APAGAR ||||||||||||
 
 //função que apaga a task elemento e objeto quando se carrega no icone do caixote
 function deleteTask(iconId, task) {
@@ -292,7 +313,7 @@ function deleteTask(iconId, task) {
     });
 }
 
-// grava o id da task seleccionada na local storage e reencaminha para a página edit
+//dá a funcionalidade de abrir a pagina de editar ao icone na task
 function openEdit(pencilId, task){
     document.getElementById(pencilId).addEventListener("click", function(event) {
         event.preventDefault();
@@ -301,61 +322,46 @@ function openEdit(pencilId, task){
     });
 }
 
+// |||||||||||||||||||||| FUNÇÕES PARA ABRIR MODALS |||||||||||||||||||||||||||||||||||||||||||||||||||
 
-//função para apagar a task selecionada da local storage
-function deleteTaskFromStorage(taskId) {
-
-    const lists = loadAllTaskArraysIntoOne();
-
-    for (const list of lists) {
-        const taskIndex = list.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            list.splice(taskIndex, 1);
-            break;
-        }
-    }
-
-    saveAllTaskArrays(lists);
-};
-
-//agrupa as 3 arrays diferentes numa lista de arrays
-function loadAllTaskArraysIntoOne() {
-    let toDoTasks = JSON.parse(localStorage.getItem('to-do-tasks'));
-    let doingTasks = JSON.parse(localStorage.getItem('doing-tasks'));
-    let doneTasks = JSON.parse(localStorage.getItem('done-tasks'));
-
-    return [toDoTasks, doingTasks, doneTasks];
-}
-
-function saveAllTaskArrays(lists) {
-    const [toDoTasks, doingTasks, doneTasks] = lists; //extrai as arrays através da descontrução da array inicial
-
-    localStorage.setItem('to-do-tasks', JSON.stringify(toDoTasks));
-    localStorage.setItem('doing-tasks', JSON.stringify(doingTasks));
-    localStorage.setItem('done-tasks', JSON.stringify(doneTasks));
-}
-
-//abre um modal para apresentação dos dados de uma task
+//função que vai buscar os elementos do modal ao html e recebe como parametros os dados
+//da task selecionada para mostrar depois de um double click na task
 function showTaskDetails(taskTitle, taskDescription) {
     var modal = document.getElementById("seeTaskModal");
     var modalContent = modal.getElementsByClassName("modal-content")[0];
 
-    // Inputs para o título e descrição da task
     var taskNameInput = modalContent.querySelector("#taskName1");
     var taskDescriptionTextArea = modalContent.querySelector("#text-area1");
 
-    // Preenchimento dos campos de input
     taskNameInput.value = taskTitle;
     taskDescriptionTextArea.value = taskDescription;
     modal.style.display = "block";
 }
 
-//fecha o task modal
+//fecha o modal que mostra os detalhes da task
 function closeSeeTaskModal() {
     var modal = document.getElementById("seeTaskModal");
     modal.style.display = "none";
 }
 
+//função para abrir o modal de criar tasks
+function openModal() {
+    var modal = document.getElementById("taskModal");
+    modal.style.display = "block";
+}
 
+//função para fechar o modal de criar tasks
+function closeModal() {
+    var modal = document.getElementById("taskModal");
+    modal.style.display = "none";
+}
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//remove o username da local storage e regressa à página inicial
+function logout() {
+    localStorage.removeItem('username');
+    window.location.href='index.html';
+}
 
 
