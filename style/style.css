@@ -119,6 +119,7 @@ button {
     height: 85vh;
 }
 
+
 /* Formatação para o aside*/
 .menu_lateral {
     padding: 40px;
@@ -174,14 +175,17 @@ button {
 
 /* Formatação para o título do aside*/
 #tittle-aside {
-    color: black;
+    color: #eae7cd;
     font-size: 20px;
     text-align: center;
     margin-top: 0px;
     margin-bottom: 20px;
-    background-color: white;
+    background-color: #8e8d8a;
     border-style: solid;
+    border-color: #8e8d8a;
     width: 150%;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 /* Formatação para o menu lateral quando o modal fica disponível*/
